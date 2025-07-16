@@ -16,22 +16,23 @@ The project demonstrates a **customer support assistant** as a use case, answeri
 
 ---
 
-## 📦 Project structure
+## 📂 Project structure
 
+```plaintext
 ai_agent_automation/
-├── agents/ # Modular agents
-│ ├── classify_query.py
-│ ├── retrieve_data.py
-│ └── generate_response.py
-├── workflows/ # Workflow graph definition
-│ └── customer_support_graph.py
-├── utils/ # Logger utility
-│ └── logger.py
-├── tests/ # Unit tests
-├── main.py # Application entry point
-├── .env # Environment variables (Groq API key)
-├── requirements.txt # Python dependencies
-└── README.md # This file
+├── agents/                   # Modular agents
+│   ├── classify_query.py
+│   ├── retrieve_data.py
+│   └── generate_response.py
+├── workflows/                # Workflow graph definition
+│   └── customer_support_graph.py
+├── utils/                    # Logger utility
+│   └── logger.py
+├── tests/                    # Unit tests
+├── main.py                   # Application entry point
+├── .env                      # Environment variables (Groq API key)
+├── requirements.txt          # Python dependencies
+└── README.md                 # This file
 
 
 ---
