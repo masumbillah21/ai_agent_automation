@@ -4,26 +4,40 @@ from agents.retrieve_data import DataRetrieverAgent
 
 @pytest.fixture
 def classifier():
+    """Fixture for QueryClassifierAgent instance"""
     return QueryClassifierAgent()
 
 @pytest.fixture
 def retriever():
+    """Fixture for DataRetrieverAgent instance"""
     return DataRetrieverAgent()
 
 def test_classify_query_billing(classifier):
-    assert classifier.classify("I want a refund") == "billing"
+    """Test classification of a billing-related query"""
+    result = classifier.classify("I want a refund")
+    assert result == "billing"
 
 def test_classify_query_technical(classifier):
-    assert classifier.classify("There is an error on my device") == "technical"
+    """Test classification of a technical-related query"""
+    result = classifier.classify("There is an error on my device")
+    assert result == "technical"
 
 def test_classify_query_general(classifier):
-    assert classifier.classify("Tell me your opening hours") == "general"
+    """Test classification of a general query"""
+    result = classifier.classify("Tell me your opening hours")
+    assert result == "general"
 
 def test_retrieve_data_billing(retriever):
-    assert "Billing info" in retriever.retrieve("billing")
+    """Test retrieval of billing-related data"""
+    result = retriever.retrieve("billing")
+    assert "Billing info" in result
 
 def test_retrieve_data_technical(retriever):
-    assert "Technical support" in retriever.retrieve("technical")
+    """Test retrieval of technical-related data"""
+    result = retriever.retrieve("technical")
+    assert "Technical support" in result
 
 def test_retrieve_data_general(retriever):
-    assert "General info" in retriever.retrieve("general")
+    """Test retrieval of general information"""
+    result = retriever.retrieve("general")
+    assert "General info" in result

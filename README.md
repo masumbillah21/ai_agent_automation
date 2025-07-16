@@ -1,11 +1,11 @@
-# 🧠 AI Agent Automation with LangGraph, LangChain, and Groq
+# AI Agent Automation with LangGraph, LangChain, and Groq
 
 This project is an AI-powered automation system that uses `LangGraph` to orchestrate a workflow of modular AI agents for tasks like query classification, data retrieval, and response generation.  
 The project demonstrates a **customer support assistant** as a use case, answering user queries with context-aware responses using Groq’s blazing-fast LLM API (e.g., Llama 3 70B).
 
 ---
 
-## 🚀 Features
+## Features
 - Modular AI agents:
   - Query classification (billing, technical, general)
   - Data retrieval based on query category
@@ -16,7 +16,7 @@ The project demonstrates a **customer support assistant** as a use case, answeri
 
 ---
 
-## 📂 Project structure
+## Project structure
 
 ```plaintext
 ai_agent_automation/
@@ -37,13 +37,13 @@ ai_agent_automation/
 
 ---
 
-## ⚙️ Prerequisites
+## Prerequisites
 - Python 3.10 or higher
 - Groq API key: [Sign up at Groq Cloud](https://console.groq.com/)
 
 ---
 
-## 🔧 Setup instructions
+## Setup instructions
 
 1️⃣ **Clone the project:**
 ```bash
@@ -92,7 +92,7 @@ What are your business hours?
 
 The system will classify your query, retrieve a relevant response, and generate a concise AI-powered reply using Groq's Llama 3 model.
 
-🧪 Running tests
+### Running tests
 Unit tests are included for key agents and the workflow:
 
 ```bash
@@ -100,14 +100,14 @@ pip install pytest pytest-asyncio
 pytest tests/
 ```
 
-📝 Notes
+### Notes
 Ensure .env is properly loaded (main.py handles this using python-dotenv).
 
 Uses latest StateGraph API from LangGraph >=0.0.40.
 
 ResponseGeneratorAgent is async; ensure you run graph.ainvoke() in your workflow.
 
-📜 License
+### License
 MIT License — feel free to use, modify, and distribute.
 
 Enjoy building scalable AI-powered workflows with Groq, LangChain, and LangGraph! 🚀
@@ -115,6 +115,6 @@ Enjoy building scalable AI-powered workflows with Groq, LangChain, and LangGraph
 
 ---
 
-✅ If you want me to include this directly in the **final working ZIP**, just say:
-👉 *“Add this README to the zip and regenerate”*.  
-I can prepare the download immediately. 👍
+If you want me to include this directly in the **final working ZIP**, just say:
+*“Add this README to the zip and regenerate”*.  
+I can prepare the download immediately.
