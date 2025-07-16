@@ -73,6 +73,8 @@ GROQ_API_KEY=your_groq_api_key_here
 uv run streamlit run app.py
 ```
 
+It will generate a web url example: `http://localhost:8501/`
+
 ### Example queries:
 - I want a refund for my last order.
 - I’m getting an error when I try to log in.
