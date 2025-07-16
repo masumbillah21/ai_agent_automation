@@ -1,110 +1,103 @@
-# AI Agent Automation with LangGraph, LangChain, and Groq
 
-This project is an AI-powered automation system that uses `LangGraph` to orchestrate a workflow of modular AI agents for tasks like query classification, data retrieval, and response generation.  
-The project demonstrates a **customer support assistant** as a use case, answering user queries with context-aware responses using Groq’s blazing-fast LLM API (e.g., Llama 3 70B).
+# AI Agent Assistant with LangGraph, LangChain, Groq, and Streamlit
+
+This project is an AI-powered automation system using `LangGraph` to orchestrate a workflow of modular AI agents for tasks like query classification, data retrieval, and response generation.
+
+The project demonstrates an interactive **customer support chatbot UI** built with Streamlit, powered by Groq’s fast LLM API (e.g., Llama 3 70B).
 
 ---
 
 ## Features
 - Modular AI agents:
   - Query classification (billing, technical, general)
-  - Data retrieval based on query category
+  - Data retrieval by category
   - Response generation using `langchain_groq.ChatGroq`
 - Workflow orchestration via `LangGraph` and `StateGraph`
-- Async support for fast and concurrent execution
-- Robust logging and easy extensibility
+- Async processing for fast responses
+- Web-based chat UI using Streamlit’s native chat API (`st.chat_message`, `st.chat_input`)
+- Easily extensible and production-ready
 
 ---
 
 ## Project structure
-
 ```plaintext
 ai_agent_automation/
-├── agents/                   # Modular agents
-│   ├── classify_query.py
-│   ├── retrieve_data.py
-│   └── generate_response.py
-├── workflows/                # Workflow graph definition
-│   └── customer_support_graph.py
-├── utils/                    # Logger utility
-│   └── logger.py
-├── tests/                    # Unit tests
-├── main.py                   # Application entry point
-├── .env                      # Environment variables (Groq API key)
-├── requirements.txt          # Python dependencies
-└── README.md                 # This file
+├── agents/
+├── workflows/
+├── utils/
+├── tests/
+├── app.py
+├── .env
+├── pyproject.toml          # Project dependencies for uv sync
+└── README.md
 ```
 
 ---
 
 ## Prerequisites
-- Python 3.10 or higher
-- Groq API key: [Sign up at Groq Cloud](https://console.groq.com/)
+- Python 3.10+
+- [uv](https://github.com/astral-sh/uv):
+  ```bash
+  pip install uv
+  ```
+
+- Groq API key: [Get API Key](https://console.groq.com/)
 
 ---
 
-## Setup instructions
+## Setup
 
-1️⃣ **Clone the project:**
+**Clone the repo:**
 ```bash
 git clone https://github.com/masumbillah21/ai_agent_automation.git
 cd ai_agent_automation
 ```
 
-2️⃣ Create a virtual environment (optional but recommended):
-
+**Sync dependencies (auto-create env if needed):**
 ```bash
-python -m venv venv
-venv\\Scripts\\activate   # Windows
-source venv/bin/activate  # Linux/macOS
+uv sync
 ```
 
-3️⃣ Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-4️⃣ Add your Groq API key to .env:
-
-```
+**Configure environment variables:**  
+Create a `.env` file in project root:
+```env
 GROQ_API_KEY=your_groq_api_key_here
 ```
 
+---
 
-▶️ Usage
-Run the application:
+## Usage
 
+### Run chatbot UI:
 ```bash
-python main.py
-```
-You’ll see a prompt:
-
-
-Enter customer query:
-Example queries:
-
-I want a refund for my last order.
-
-I’m getting an error when I try to log in.
-
-What are your business hours?
-
-The system will classify your query, retrieve a relevant response, and generate a concise AI-powered reply using Groq's Llama 3 model.
-
-### Running tests
-Unit tests are included for key agents and the workflow:
-
-```bash
-python -m pytest tests
+uv run streamlit run app.py
 ```
 
-### Notes
-Ensure .env is properly loaded (main.py handles this using python-dotenv).
+### Example queries:
+- I want a refund for my last order.
+- I’m getting an error when I try to log in.
+- What are your business hours?
 
-Uses latest StateGraph API from LangGraph >=0.0.40.
+---
 
-ResponseGeneratorAgent is async; ensure you run graph.ainvoke() in your workflow.
+## Run tests:
+```bash
+uv run pytest
+```
 
-### License
-MIT License — feel free to use, modify, and distribute.
+---
+
+## Dependencies (declared in `pyproject.toml`):
+- langchain>=0.3.26
+- langchain-groq>=0.3.6
+- langgraph>=0.5.3
+- pydantic>=2.11.7
+- pytest>=8.4.1
+- pytest-asyncio>=1.1.0
+- python-dotenv>=1.1.1
+- streamlit>=1.46.1
+
+---
+
+## License
+MIT License — free to use, modify, and distribute.
