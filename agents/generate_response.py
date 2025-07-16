@@ -15,10 +15,10 @@ class ResponseGeneratorAgent:
     async def generate(self, context: str, user_input: str) -> str:
         try:
             prompt = (
-                f"Answer the following question concisely and directly, using only the information provided.\n"
+                f"Answer the following question as concisely as possible.\n\n"
                 f"Question: {user_input}\n"
-                f"Relevant information: {context}\n"
-                f"Do not include extra pleasantries, disclaimers, or additional help offers. Provide a short, factual answer only."
+                f"Relevant information (optional): {context}\n\n"
+                f"If the relevant information is not useful or empty, still attempt to answer correctly from your knowledge."
             )
 
             messages = [

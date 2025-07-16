@@ -5,9 +5,12 @@ class DataRetrieverAgent:
         logger.info("DataRetrieverAgent initialized")
 
     def retrieve(self, category: str) -> str:
-        data_map = {
-            "billing": "Billing info: Order #123 has been refunded.",
-            "technical": "Technical support: Please restart your device.",
-            "general": "General info: We are open from 9 AM to 5 PM Monday through Friday."
-        }
-        return data_map.get(category, "No relevant data found.")
+        if category == "billing":
+            return "Billing info: refunds, payments, invoices."
+        elif category == "technical":
+            return "Technical support help: troubleshooting, errors."
+        elif category == "general":
+            return "General info: our company is based in Dhaka, Bangladesh. Business hours are 9 AM to 5 PM."
+        else:
+            return ""
+
