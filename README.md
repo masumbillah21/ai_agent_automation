@@ -96,8 +96,7 @@ The system will classify your query, retrieve a relevant response, and generate 
 Unit tests are included for key agents and the workflow:
 
 ```bash
-pip install pytest pytest-asyncio
-pytest tests/
+python -m pytest tests
 ```
 
 ### Notes
