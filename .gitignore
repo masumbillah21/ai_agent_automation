@@ -1,20 +1,12 @@
-# Python cache and compiled files
+# Python cache
 __pycache__/
-*.py[cod]
-*.pyo
-*.pyd
+*.pyc
 
-# Virtual environment
-venv/
-.env
-
-# IDE/editor settings (optional, common for VS Code/PyCharm users)
-.vscode/
-.idea/
-
-# Test cache
+# Pytest cache
 .pytest_cache/
 
-# OS-specific files
-.DS_Store
-Thumbs.db
+# Virtualenv
+venv/
+
+# Environment files
+.env
