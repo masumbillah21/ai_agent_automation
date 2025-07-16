@@ -6,39 +6,54 @@ from dotenv import load_dotenv
 load_dotenv()
 graph = create_customer_support_graph()
 
-st.set_page_config(page_title="AI Agent Assistant", page_icon="🤖")
+st.markdown(
+    """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    [data-testid="stToolbar"] {display: none;}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
-st.title("AI Agent Assistant")
-st.write("Ask your question below:")
+st.set_page_config(page_title="AI Agent Assistant", page_icon="🤖", layout="centered")
 
-if "history" not in st.session_state:
-    st.session_state.history = []
+st.markdown("<h1 style='text-align: center;'>AI Agent Assistant 🤖</h1>", unsafe_allow_html=True)
 
-if "pending" not in st.session_state:
-    st.session_state.pending = None
-
-
-for entry in st.session_state.history:
-    st.markdown(f"**You:** {entry['user']}")
-    st.markdown(f"**AI:** {entry['ai']}")
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+if "processing" not in st.session_state:
+    st.session_state.processing = False
 
 
-if st.session_state.pending:
-    st.markdown(f"**You:** {st.session_state.pending}")
-    with st.spinner("Processing..."):
-        result = asyncio.run(graph.ainvoke({"input_text": st.session_state.pending}))
-        ai_response = result["response"]
-    st.session_state.history.append({"user": st.session_state.pending, "ai": ai_response})
-    st.session_state.pending = None
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+user_question = st.chat_input("Type your question and press Enter")
+if user_question and not st.session_state.processing:
+    st.session_state.processing = True
+    st.session_state.messages.append({"role": "user", "content": user_question})
     st.rerun()
 
-with st.form("chat_form", clear_on_submit=True):
-    col1, col2 = st.columns([5, 1])
-    with col1:
-        query = st.text_input("💬", label_visibility="collapsed", placeholder="Type your message...")
-    with col2:
-        submit = st.form_submit_button("Submit")
+if st.session_state.processing and st.session_state.messages:
+    latest_message = st.session_state.messages[-1]
+    if latest_message["role"] == "user":
+        with st.chat_message("assistant"):
+            response_placeholder = st.empty()
+            assistant_response = asyncio.run(
+                graph.ainvoke({"input_text": latest_message["content"]})
+            )
 
-    if submit and query.strip():
-        st.session_state.pending = query
+            full_response = ""
+            for char in assistant_response["response"]:
+                full_response += char
+                response_placeholder.markdown(full_response)
+                asyncio.sleep(0.01)
+
+            st.session_state.messages.append({"role": "assistant", "content": full_response})
+
+        st.session_state.processing = False
         st.rerun()
