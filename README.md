@@ -108,12 +108,3 @@ ResponseGeneratorAgent is async; ensure you run graph.ainvoke() in your workflow
 
 ### License
 MIT License — feel free to use, modify, and distribute.
-
-Enjoy building scalable AI-powered workflows with Groq, LangChain, and LangGraph! 🚀
-
-
----
-
-If you want me to include this directly in the **final working ZIP**, just say:
-*“Add this README to the zip and regenerate”*.  
-I can prepare the download immediately.
